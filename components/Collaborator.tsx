@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { use, useState } from "react"
+import { useState } from "react"
 import UserTypeSelector from "@/components/UserTypeSelector";
 import { Button } from "@/components/ui/button";
 import { removeCollaborator, updateDocumentAccess } from "@/lib/actions/room.actions";
@@ -15,7 +15,7 @@ const Collaborator = ({ collaborator, creatorId, email, roomId, user } : Collabo
         await updateDocumentAccess({ 
             roomId, 
             email, 
-            userType, 
+            userType: type as UserType, 
             updatedBy: user 
         })
         setLoading(false)
@@ -24,7 +24,10 @@ const Collaborator = ({ collaborator, creatorId, email, roomId, user } : Collabo
     const removeCollaboratorHandler = async (email: string) => {
         setLoading(true)
 
-        await removeCollaborator({ roomId , email })
+        await removeCollaborator({ 
+            roomId, 
+            email 
+        })
 
         setLoading(false)
     }
