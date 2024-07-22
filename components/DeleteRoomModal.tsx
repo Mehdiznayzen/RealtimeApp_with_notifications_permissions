@@ -15,17 +15,20 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { deleteDocument } from "@/lib/actions/room.actions";
+import { useRouter } from 'next/navigation';
 
 
 const DeleteRoomModal = ({ roomId } : { roomId : any }) => {
     const [loading, setLoading] = useState<boolean>(false)
     const [open, setOpen] = useState(false);
+    const router = useRouter()
 
     const deleteDocumentHandler = async () => {
         setLoading(true)
         try{
             await deleteDocument(roomId)
             setOpen(false)
+            router.push('/')
         }catch(error){
             console.log("Error notif:", error);
         }
@@ -73,6 +76,7 @@ const DeleteRoomModal = ({ roomId } : { roomId : any }) => {
                         variant="destructive"
                         onClick={deleteDocumentHandler}
                         className="gradient-red w-full"
+                        disabled={loading}
                     >
                         {loading ? "Deleting..." : "Delete"}
                     </Button>

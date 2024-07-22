@@ -12,7 +12,7 @@ const Collaborator = ({ collaborator, creatorId, email, roomId, user } : Collabo
 
     const shareDocumentHandler = async (type:string) => {
         setLoading(true)
-        await updateDocumentAccess({ 
+        await updateDocumentAccess({
             roomId, 
             email, 
             userType: type as UserType, 
