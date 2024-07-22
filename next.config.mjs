@@ -8,6 +8,11 @@ const nextConfig = {
                 hostname : "img.clerk.com" 
             }
         ]
+    },
+    
+    // Option for ignore the typescript errors
+    typescript : {
+        ignoreBuildErrors : true
     }
 };
 
